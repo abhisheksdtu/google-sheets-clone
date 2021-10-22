@@ -2,376 +2,130 @@
 <html lang="en">
 
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
-            integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href="//fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css">
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Google Sheets</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+        <link rel="stylesheet" href="style.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
 
-        <meta name=" google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
-
-        <title>Google Sheets Clone</title>
     </head>
 
     <body>
-
-        <div class="menu-container">
-
-            <div class="menubar">
-                <div class="sheets-icon">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Google_Sheets_logo_%282014-2020%29.svg"
-                        alt="Sheets Icon" style='height: 40px; width: 40px;'>
-                </div>
-
-                <div class="row-1">
-                    <div class="sheet-name">
-                        <input spellcheck="false" type="text" autocomplete="off" value="Sheet" tabindex="0" dir="ltr"
-                            aria-label="Rename" style="visibility: visible; width: 48px;" data-tooltip="Rename">
-                    </div>
-                    <div class='icon'>
-                        <span class="material-icons-outlined star-icon ">star_border</span>
-                    </div>
-                    <div class='icon'>
-                        <span class="material-icons-outlined drive-icon ">drive_file_move</span>
-                    </div>
-                    <div class='icon'>
-                        <span class="material-icons-outlined cloud-icon ">cloud_done</span>
-                    </div>
-                </div>
-
-                <div class="row-2">
-                    <div class="file menu">File</div>
-                    <div class="edit menu">Edit</div>
-                    <div class="view menu">View</div>
-                    <div class="insert menu">Insert</div>
-                    <div class="format menu">Format</div>
-                    <div class="data menu">Data</div>
-                    <div class="tools menu">Tools</div>
-                    <div class="add-ons menu">Add-ons</div>
-                    <div class="help menu">Help</div>
-                    <p class="last-edit">Last edit was 5 hours ago</p>
-                </div>
+        <div class="main_container">
+            <div class="icon_container">
+                <img src="https://img.icons8.com/color/64/000000/google-sheets.png" width="50" height="50" />
             </div>
-
-            <div class="titlebar">
-                <div class="comment">
-                    <span class="material-icons-outlined">comment</span>
+            <div class="nos_and_menu_container">
+                <div class="nos-container">
+                    <input type="file" class="inputButton" id="inputButton" accept=".json" style="display: none">
+                    <div class="new" style="cursor: pointer">New</div>
+                    <div class="open" style="cursor: pointer" onclick="myOpenFunction()">Open</div>
+                    <div class="download" style="cursor: pointer">Save</div>
                 </div>
+                <div class="menu-container">
+                    <div class="font-container">
+                        <select id="font-family" class="font-family" style="cursor: pointer">
+                            <option value="Arial">Arial</option>
+                            <option value="Cambria">Cambria</option>
+                            <option value="Georgia">Georgia</option>
+                            <option value="Monospace">Monospace</option>
+                            <option value="Sans-Serif">Sans-Serif</option>
+                            <option value="Fantasy">Fantasy</option>
+                        </select>
+                    </div>
+                    <div class="fontSize-container">
+                        <select id="font-size" class="font-size">
+                            <option value="8">8</option>
+                            <option value="10">10</option>
+                            <option value="12">12</option>
+                            <option value="16">16</option>
+                            <option value="20">20</option>
+                            <option value="32">32</option>
+                        </select>
+                    </div>
+                    <div class="BUIC-container">
+                        <div class="BUI_container">
+                            <div class="bold" style="cursor: pointer">
+                                <i class="fas fa-bold"></i>
+                            </div>
 
-                <div class="share">
-                    <span class="material-icons-outlined icon">lock</span>
-                    Share
+                            <div class="underline" style="cursor: pointer">
+                                <i class="fas fa-underline"></i>
+                            </div>
+
+                            <div class="italic" style="cursor: pointer">
+                                <i class="fas fa-italic"></i>
+                            </div>
+                        </div>
+                        <div class="color-container">
+                            <input type="color" style="display: none" id="fontColorButton" class="color"
+                                title="Change Font Color" />
+                            <label class="color" style="cursor: pointer" for="fontColorButton">
+                                <i class="fas fa-font"></i>
+                            </label>
+
+                            <input type="color" style="display: none" id="bgColorButton" class="bg-color"
+                                title="Change bg Color" />
+                            <label class="bg-color" style="cursor: pointer" for="bgColorButton">
+                                <i class="fas fa-fill-drip"></i>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="alignment-container">
+
+                        <div class="left" style="cursor: pointer">
+                            <i class="fas fa-align-left"></i>
+                        </div>
+
+                        <div class="center" style="cursor: pointer">
+                            <i class="fas fa-align-center"></i>
+                        </div>
+
+                        <div class="right" style="cursor: pointer">
+                            <i class="fas fa-align-right"></i>
+                        </div>
+
+                    </div>
                 </div>
-
-                <div class="g-signin2" data-onsuccess="onSignIn"></div>
             </div>
         </div>
 
-        <div class="main-grid">
-
-            <div class="primary-toolbar">
-
-                <div class="group-1">
-                    <div class="icon" id='undo'>
-                        <span class="material-icons">undo</span>
-                        <div class="hide">Undo (Ctrl+Z)</div>
-                    </div>
-                    <div class="icon" id='redo'>
-                        <span class="material-icons">redo</span>
-                        <div class="hide">Redo (Ctrl+Y)</div>
-                    </div>
-                    <div class="icon">
-                        <span class="material-icons">local_printshop</span>
-                        <div class="hide">Print (Ctrl+P)</div>
-                    </div>
-                    <div class="icon">
-                        <span class="material-icons">format_paint</span>
-                        <div class="hide">Paint format</div>
-                    </div>
-                </div>
-
-                <div class="group-2">
-                    <select name="percent" id="zoom-percent">
-                        <option value="50">50%</option>
-                        <option value="75">75%</option>
-                        <option value="90">90%</option>
-                        <option value="100" selected>100%</option>
-                        <option value="125">125%</option>
-                        <option value="150">150%</option>
-                        <option value="200">200%</option>
-                    </select>
-
-                    <div class="hide">Zoom</div>
-                </div>
-
-                <div class="group-3">
-                    <select name="font" id="font-family">
-                        <option value="Amatic SC" style="font-family: 'Amatic SC', cursive;">
-                            Amatic SC
-                        </option>
-                        <option value="Arial" style="font-family: 'Arial';">
-                            Arial
-                        </option>
-                        <option value="Caveat" style="font-family: 'Caveat', cursive;">
-                            Caveat
-                        </option>
-                        <option value="Comfortaa" style="font-family: 'Comfortaa', cursive;">
-                            Comfortaa
-                        </option>
-                        <option value="Comic Sans MS" style="font-family: 'Comic Sans MS', 'Comic Sans' , cursive;">
-                            Comic Sans MS
-                        </option>
-                        <option value="Courier New" style="font-family:  'Courier New', monospace;">
-                            Courier New
-                        </option>
-                        <option value="EB Garamond" style="font-family: 'EB Garamond', serif;">
-                            EB Garamond
-                        </option>
-                        <option value="Georgia" style="font-family: 'Georgia', serif;">
-                            Georgia
-                        </option>
-                        <option value="Impact" style="font-family: 'Impact', sans-serif;">
-                            Impact
-                        </option>
-                        <option value="Lato" style="font-family: 'Lato', sans-serif;">
-                            Lato
-                        </option>
-                        <option value="Lobster" style="font-family: 'Lobster', cursive;">
-                            Lobster
-                        </option>
-                        <option value="Lora" style="font-family: 'Lora', serif;">
-                            Lora
-                        </option>
-                        <option value="Merriweather" style="font-family: 'Merriweather', serif;">
-                            Merriweather
-                        </option>
-                        <option value="Montserrat" style="font-family: 'Montserrat', sans-serif;">
-                            Montserrat
-                        </option>
-                        <option value="Nunito" style="font-family: 'Nunito', sans-serif;">
-                            Nunito
-                        </option>
-                        <option value="Oswald" style="font-family: 'Oswald', sans-serif;">
-                            Oswald
-                        </option>
-                        <option value="Pacifico" style="font-family: 'Pacifico', cursive;">
-                            Pacifico
-                        </option>
-                        <option value="Playfair Display" style="font-family: 'Playfair Display', serif;">
-                            Playfair Display
-                        </option>
-                        <option value="Roboto" style="font-family: 'Roboto', sans-serif;">
-                            Roboto
-                        </option>
-                        <option value="Roboto Mono" style="font-family: 'Roboto Mono', monospace;">
-                            Roboto Mono
-                        </option>
-                        <option value="Spectral" style="font-family: 'Spectral', serif;">
-                            Spectral
-                        </option>
-                        <option value="Times New Roman" style="font-family: 'Times New Roman', Times, serif;">
-                            Times New Roman
-                        </option>
-                        <option value="Trebuchet MS" style="font-family: 'Trebuchet MS', sans-serif;">
-                            Trebuchet MS
-                        </option>
-                        <option value="Verdana" style="font-family: Verdana, sans-serif;">
-                            Verdana
-                        </option>
-                    </select>
-                    <div class="hide">Font Type</div>
-                </div>
-
-                <div class="group-4">
-                    <select name="percent" id="font-size">
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10" selected>10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="14">14</option>
-                        <option value="18">18</option>
-                        <option value="24">24</option>
-                        <option value="36">36</option>
-                    </select>
-                    <div class="hide">Font size</div>
-                </div>
-
-                <div class="group-5">
-                    <div class="icon" id='bold-btn'>
-                        <span class="material-icons">format_bold</span>
-                        <div class="hide">Bold (Ctrl+B)</div>
-                    </div>
-                    <div class="icon" id='italic-btn'>
-                        <span class="material-icons">format_italic</span>
-                        <div class="hide">Italic (Ctrl+I)</div>
-                    </div>
-                    <div class="icon" id='underline-btn'>
-                        <span class="material-icons">format_underlined</span>
-                        <div class="hide">Underline (Ctrl+U)</div>
-                    </div>
-                    <div class="icon" id='strikethrough-btn'>
-                        <span class="material-icons">strikethrough_s</span>
-                        <div class="hide">Strike-through(Alt+Shift+5)</div>
-                    </div>
-                </div>
-
-                <div class="group-6">
-                    <div class="icon">
-                        <span class="material-icons">format_color_text</span>
-                        <div class="hide">Text Color</div>
-                    </div>
-                    <div class="icon">
-                        <span class="material-icons">format_color_fill</span>
-                        <div class="hide">Fill color</div>
-                    </div>
-                    <div class="icon">
-                        <span class="material-icons">border_all</span>
-                        <div class="hide">Borders</div>
-                    </div>
-                </div>
-
-                <div class="group-8">
-
-                    <div class="drop-down">
-
-                        <div class="selected">
-                            <a href="#"> L
-                                <!-- <span class="material-icons">
-                                    format_align_left
-                                </span>
-                                <span class="material-icons">
-                                    arrow_drop_down
-                                </span> -->
-                            </a>
-                        </div>
-
-                        <div class="options" style="display: none;">
-                            <ul>
-                                <div class="icon">
-                                    <!-- <span class="material-icons">format_align_left</span> -->
-                                    L
-                                </div>
-                                <div class="icon">
-                                    <!-- <span class="material-icons">format_align_center</span> -->
-                                    C
-                                </div>
-                                <div class="icon">
-                                    <!-- <span class="material-icons">format_align_right</span> -->
-                                    R
-                                </div>
-                            </ul>
-                        </div>
-                    </div>
-
-
-
-                    <div class="icon">
-                        <span class="material-icons">vertical_align_top</span>
-                    </div>
-                    <div class="icon">
-                        <span class="material-icons">vertical_align_center</span>
-                    </div>
-                    <div class="icon">
-                        <span class="material-icons">vertical_align_bottom</span>
-                    </div>
-                    <div class="icon">
-                        <span class="material-icons">text_rotate_vertical</span>
-                    </div>
-                    <div class="icon">
-                        <span class="material-icons">text_rotation_angledown</span>
-                    </div>
-                    <div class="icon">
-                        <span class="material-icons">text_rotate_up</span>
-                    </div>
-                    <div class="icon">
-                        <span class="material-icons">text_rotation_angleup</span>
-                    </div>
-                    <div class="icon">
-                        <span class="material-icons">text_rotation_angleup</span>
-                    </div>
-                </div>
-
-                <div class="group-9">
-                    <div class="icon">
-                        <span class="material-icons">link</span>
-                    </div>
-                    <div class="icon">
-                        <span class="material-icons-outlined">add_comment</span>
-                    </div>
-                    <div class="icon">
-                        <span class="material-icons-outlined">assessment</span>
-                    </div>
-                    <div class="icon">
-                        <span class="material-icons-outlined">filter_alt</span>
-                    </div>
-                    <div class="icon">
-                        <span class="material-icons-outlined">functions</span>
-                    </div>
-                </div>
+        <div class="formula-container">
+            <input type="text" class="address-box" readonly />
+            <div class="seperator"><img src="./img/fx.png" height="20" width="20" class="fx"></div>
+            <input type="text" class="formula-box" />
+        </div>
+        <div class="grid_container">
+            <div class="top-left-block"></div>
+            <div class="top-row"></div>
+            <div class="left-col"></div>
+            <div class="grid"></div>
+        </div>
+        <div class="sheets">
+            <div class="add-sheet_container" style="cursor: pointer">
+                <i class="fas fa-plus icon"></i>
 
             </div>
 
-            <div class="formula-container">
-                <div class="address-box">
-                    <input type="text" value="A1">
+            <div class="sheets-list">
+                <div class="sheet active-sheet" sheetIdx="1" style="cursor: pointer">
+                    Sheet 1
                 </div>
-                <div class="formula-box">
-                    <input type="text" value='formula'>
-                </div>
-                <div class="write-box">
-                    <input type="text">
-                </div>
-            </div>
-
-            <div class="grid-container">
-                <div class="top-left-block"></div>
-                <div class="top-row">
-                    <!-- <div class="col"></div> -->
-                </div>
-                <div class="left-col">
-                    <div class="left-col-box"></div>
-                </div>
-                <div class="grid">
-                    <!-- <div class="col"></div> -->
-                </div>
-            </div>
-
-            <div class="sheets-container">
-                <div style="width: 40px;"></div>
-
-                <div class="add-sheet-container">
-                    <i class="fas fa-plus icon"></i>
-                </div>
-
-                <div class="sheets-list">
-                    <div class="sheet active-sheet" sheetIdx='1'>Sheet 1</div>
-                </div>
-            </div>
-
-            <div class="app-switcher">
-                <div class="calender icon">
-                    <img src="img/google-calendar.svg" alt="">
-                </div>
-                <div class="calender icon">
-                    <img src="img/google-calendar.svg" alt="">
-                </div>
-                <div class="calender icon">
-                    <img src="img/google-calendar.svg" alt="">
-                </div>
-
             </div>
         </div>
 
-        <script src="https://apis.google.com/js/platform.js" async defer></script>
-        <script src="grid.js" defer></script>
-        <script src="script.js" defer></script>
+        <script src="./init.js"></script>
+        <script src="./script.js"></script>
+        <script src="./formula.js"></script>
+        <script src="./newOpenSave.js"></script>
+
+        <script>
+            function myOpenFunction() {
+                document.getElementById("inputButton").click();
+            }
+        </script>
     </body>
 
 </html>
